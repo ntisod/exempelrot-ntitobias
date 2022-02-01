@@ -2,4 +2,4 @@
 # wsp22
 Webbserverprogrammering VT2022
 
-2022 Tobias Lindberg
+Tobias Lindberg
