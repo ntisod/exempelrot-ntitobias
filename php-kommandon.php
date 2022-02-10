@@ -19,9 +19,9 @@ Variabelnamn i php börjar alltid med $.
 
 
 <?php
-    echo "<h1>Echo</h1>";
+    print "<h1>Echo</h1>";
     $namn = "Tobias";
-    echo "Jag heter $namn";
+    print "Jag heter $namn";
 ?>
 
 
