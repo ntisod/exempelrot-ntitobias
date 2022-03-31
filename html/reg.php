@@ -24,7 +24,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pwErr = "Du måste ange lösenord!";
     $errors++;
   } else{
-    if($_POST["pw"]!=$_POST["pwTest"]){
+    $pw = $_POST["pw"];
+    if($pw!=$_POST["pwTest"]){
       $pwErr = "Dina lösenord stämmer inte överens.";
       $errors++;
     }
