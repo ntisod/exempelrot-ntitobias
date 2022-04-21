@@ -1,5 +1,6 @@
 <?php
 include("../templates/head.php");
+require("../includes/wsp1-functions.php"); //TL testUser 7/4
 
 // define variables and set to empty values
 $pwErr = $pwTestErr = $usernameErr = "";
@@ -17,6 +18,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!preg_match("/^[a-zA-Z-_åäöÅÄÖ0123456789]*$/",$username)) {
       $usernameErr = "Endast bokstäver, siffor och understrykning.";
       $errors++;
+    }else{   //TL testUser 7/4
+      if(testUserExist($username)){
+        $usernameErr = "Användarnamnet existerar redan i databasen. Välj ett nytt.";
+        $errors++;  
+      }
     }
   }
 
@@ -42,16 +48,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dbuser, $dbpw);
       // set the PDO error mode to exception
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $sql = "INSERT INTO users (username, password) VALUES ('$username', '$pw');";
+      $hashed_pw = password_hash($pw, PASSWORD_DEFAULT);
+      $sql = "INSERT INTO users (username, password) VALUES ('$username', '$hashed_pw');";
       // use exec() because no results are returned
       $conn->exec($sql);
       echo "Ny post skapad.";
+
+
     } catch(PDOException $e) {
       echo $sql . "<br>" . $e->getMessage();
     }
 
     $conn = null;
-
+    //Ta oss till en annan sida
+    header("Location: welcome.php");   
   }
 
 }
@@ -97,6 +107,8 @@ echo "<br>";
 echo $pw;
 echo "<br>";
 echo $pwTest;
+
+include "../templates/foot.php";
 
 ?>
 
