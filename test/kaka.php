@@ -1,6 +1,6 @@
 <?php
-
-setcookie("wsp1-user", "Tobias", 86400);
+$cookiename="wsp1-user";
+setcookie($cookiename, "Tobias", time() + 60*5, "/");
 ?>
 
 <!DOCTYPE html>
@@ -14,10 +14,10 @@ setcookie("wsp1-user", "Tobias", 86400);
 <body>
     
 <?php
-    if(!isset($_COOKIE["wsp1-user"])){
+    if(!isset($_COOKIE[$cookiename])){
         echo "<p>Kakan är inte satt.</p>";
     }else{
-        echo "<p>Kakan har värdet " . $_COOKIE["wsp1-user"];
+        echo "<p>Kakan har värdet " . $_COOKIE[$cookiename];
     }
 ?>
 
