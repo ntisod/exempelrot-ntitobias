@@ -5,3 +5,5 @@
 
 echo "<p>Copyright &copy; 2022-" . date("Y") . " Tobias Lindberg, NTI Gymnasiet</p>";
 -->
+
+<script src="js/js.js"></script>
