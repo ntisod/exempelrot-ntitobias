@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   //Kontrollera om det inte finns errors
   if($errors<1){
     //Skicka data till databasen
-    require("..\includes\settings.php");
+    require("../includes/settings.php");
     
     try {
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dbuser, $dbpw);
