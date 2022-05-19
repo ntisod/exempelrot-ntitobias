@@ -98,13 +98,6 @@ include("../templates/head.php");
 </form>
 
 <?php
-echo "<h2>Din inmatning:</h2>";
-echo $username;
-echo "<br>";
-echo $pw;
-echo "<br>";
-echo $pwTest;
-
 include "../templates/foot.php";
 
 ?>

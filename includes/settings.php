@@ -1,6 +1,6 @@
 <?php
 
 $servername = "localhost";
-$dbuser = "tobias_phpuser";
+$dbuser = "phpuser";
 $dbpw = "(lx](RHWURFTM0fn";
 $dbname = "wsp22";

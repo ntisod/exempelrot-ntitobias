@@ -1,5 +1,4 @@
 <?php
-include("../templates/head.php");
 require("../includes/wsp1-functions.php"); //TL testUser 7/4
 
 // define variables and set to empty values
@@ -27,13 +26,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pw = $_POST["pw"];
 
   }
-
-  echo "Antal fel: $errors" ;
-    
+  
   //Kontrollera om det inte finns errors
   if($errors<1){
     //Hämta db-inställningar
-    require("..\includes\settings.php");
+    require("../includes/settings.php");
     
     //Hämta hashat lösenord från DB
     try {
@@ -49,8 +46,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       // set the resulting array to associative
       $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
 
-      echo "Hämtat lösenord:" . $resultat["password"];
-
       //Kolla om inskrivet lösenord stämmer överens med lösenordet i DB.
       $verified = password_verify($pw, $resultat["password"]);
  
@@ -61,16 +56,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           echo "Fel lösenord, eller användarnamn.";
       }
 
+      //Ta oss till en annan sida
+      header("Location: welcome.php");   
 
     } catch(PDOException $e) {
       echo $sql . "<br>" . $e->getMessage();
     }
 
     $conn = null;
-    //Ta oss till en annan sida
-    //header("Location: welcome.php");   
   }
-
 }
 
 function test_input($data) {
@@ -79,6 +73,8 @@ function test_input($data) {
   $data = htmlspecialchars($data);
   return $data;
 } 
+
+include("../templates/head.php");
 
 ?>
 
@@ -103,10 +99,6 @@ function test_input($data) {
 </form>
 
 <?php
-echo "<h2>Din inmatning:</h2>";
-echo $username;
-echo "<br>";
-echo $pw;
 
 include "../templates/foot.php";
 
