@@ -67,7 +67,7 @@ function test_input($data) {
   $data = htmlspecialchars($data);
   return $data;
 } 
-
+$title = "Registrera ny användare";
 include("../templates/head.php");
 
 ?>

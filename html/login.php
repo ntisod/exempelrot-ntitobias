@@ -51,14 +51,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
  
       //Låt olika saker hända beroende på om man skrivit rätt lösenord eller inte
       if($verified){
-          echo "Grattis, du är inloggad!";
-      } else{
+        //Ta oss till en annan sida
+        header("Location: welcome.php");   
+    } else{
           echo "Fel lösenord, eller användarnamn.";
       }
-
-      //Ta oss till en annan sida
-      header("Location: welcome.php");   
-
+  
     } catch(PDOException $e) {
       echo $sql . "<br>" . $e->getMessage();
     }
@@ -74,6 +72,7 @@ function test_input($data) {
   return $data;
 } 
 
+$title = "Logga in";
 include("../templates/head.php");
 
 ?>
